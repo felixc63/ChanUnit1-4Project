@@ -12,6 +12,7 @@ public class TicTacToe {
     private String indexEight;
     private String indexNine;
     private String symbol;
+    private int repeat;
     public TicTacToe(String symbol){
         botScore = 0;
         userScore = 0;
@@ -26,6 +27,7 @@ public class TicTacToe {
         indexEight = "";
         indexNine = "";
         this.symbol = symbol;
+        this.repeat = 1;
     }
 
     public TicTacToe(String symbol, int repeat){
@@ -42,6 +44,10 @@ public class TicTacToe {
         indexEight = "";
         indexNine = "";
         this.symbol = symbol;
+        this.repeat = repeat;
+    }
+    public int getRepeat(){
+        return repeat;
     }
     public int getBotScore(){
         return botScore;
@@ -80,29 +86,30 @@ public class TicTacToe {
 
     public void calcSpot(String spot, String symbol){
         if(spot.equals("1")){
-            System.out.println(printTable(symbol,indexTwo,indexThree,indexFour,indexFive,indexSix,indexSeven,indexEight,indexNine));
+            indexOne = symbol;
         }else if(spot.equals("2")){
-            System.out.println(printTable(indexOne,symbol,indexThree,indexFour,indexFive,indexSix,indexSeven,indexEight,indexNine));
+            indexTwo = symbol;
         }else if(spot.equals("3")){
-            System.out.println(printTable(indexOne,indexTwo,symbol,indexFour,indexFive,indexSix,indexSeven,indexEight,indexNine));
+            indexThree = symbol;
         }else if(spot.equals("4")){
-            System.out.println(printTable(indexOne,indexTwo,indexThree,symbol,indexFive,indexSix,indexSeven,indexEight,indexNine));
+            indexFour = symbol;
         }else if(spot.equals("5")){
-            System.out.println(printTable(indexOne,indexTwo,indexThree,indexFour,symbol,indexSix,indexSeven,indexEight,indexNine));
+            indexFive = symbol;
         }else if(spot.equals("6")){
-            System.out.println(printTable(indexOne,indexTwo,indexThree,indexFour,indexFive,symbol,indexSeven,indexEight,indexNine));
+            indexSix = symbol;
         }else if(spot.equals("7")){
-            System.out.println(printTable(indexOne,indexTwo,indexThree,indexFour,indexFive,indexSix,symbol,indexEight,indexNine));
+            indexSeven = symbol;
         }else if(spot.equals("8")){
-            System.out.println(printTable(indexOne,indexTwo,indexThree,indexFour,indexFive,indexSix,indexSeven,symbol,indexNine));
+            indexEight = symbol;
         }else if(spot.equals("9")){
-            System.out.println(printTable(indexOne,indexTwo,indexThree,indexFour,indexFive,indexSix,indexSeven,indexEight,symbol));
+            indexNine = symbol;
         }
+
+        System.out.println(printTable(indexOne,indexTwo,indexThree,indexFour,indexFive,indexSix,indexSeven,indexEight,indexNine));
     }
     public void userPlay(String spot, String symbol){
         System.out.println("Your move: ");
         calcSpot(spot,symbol); //User Move
-
     }
 
     public void botPlay(){
@@ -179,15 +186,36 @@ public class TicTacToe {
             }
             return true;
         }
-        if (indexThree.equals(indexFive) && indexFour.equals(indexSeven)){
-            if (indexThree.equals(symbol)){
+        if (indexThree.equals(indexFive) && indexThree.equals(indexSeven)) {
+            if (indexThree.equals(symbol)) {
                 userScore++;
-            }else{
+            } else {
                 botScore++;
             }
             return true;
-        }else{
-            return false;
         }
+
+        //Checks if there are no available spots left on the table; Ends the round if there aren't any spots
+        if (!(table.contains("1"))){
+            if(!(table.contains("2"))){
+                if(!table.contains("3")){
+                    if(!table.contains("4")){
+                        if (!table.contains("5")){
+                            if(!table.contains("6")){
+                                if (!table.contains("7")){
+                                    if (!table.contains("8")){
+                                        if(!table.contains("9")){
+                                            System.out.println("Tie!");
+                                            return true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return false;
     }
 }
