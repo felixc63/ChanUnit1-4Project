@@ -8,7 +8,7 @@ public class TicTacToeRunner {
         System.out.println("Welcome to TicTacToe!"); //Introduction
         System.out.println("You will be versing a bot.");
 
-        String symbol = "o";
+        String symbol = "o"; //Default symbol of "o"
         while (true) { //Loops until the user inputs an appropriate symbol
             System.out.print("Choose your desired symbol (Note: bot uses symbol 'x' already): ");
             symbol = scan.nextLine();
@@ -25,9 +25,9 @@ public class TicTacToeRunner {
             }
         }
 
-        boolean isIntGreaterThanOne = true;
+        boolean isIntGreaterThanZero = true;
         int repeat = 0;
-        while (isIntGreaterThanOne) { //Loops until the user inputs a valid integer greater than 0
+        while (isIntGreaterThanZero) { //Loops until the user inputs a valid integer greater than 0
             System.out.print("How many times do you want the game to repeat? ");
             repeat = scan.nextInt(); //Stores a 'repeat' variable that is later used for the parameter
             if (repeat <= 0) {
@@ -35,7 +35,7 @@ public class TicTacToeRunner {
                 System.out.println("Try again.");
                 System.out.println();
             }else{
-                isIntGreaterThanOne = false;
+                isIntGreaterThanZero = false;
             }
         }
 
@@ -45,7 +45,7 @@ public class TicTacToeRunner {
             ticTacToe = new TicTacToe(symbol,repeat); //Replays the game of the user's number; User's symbol is used
         }
 
-        for(int i = 0; i < ticTacToe.getRepeat(); i++) { //Loop repeats until it reaches user's repeat input
+        for(int i = 0; i < ticTacToe.getRepeat(); i++) { //Loop repeats until it reaches user's "repeat" rounds input
             System.out.println("Creating an empty table..."); //Creates an empty table for the start of every round
             System.out.print(ticTacToe.printTable("1", "2", "3", "4", "5", "6", "7", "8", "9"));
 
@@ -72,34 +72,35 @@ public class TicTacToeRunner {
                     break; //Breaks loop as soon as the bot wins
                 } //Loop will break if there's a tie
             }
-            System.out.println("Current Standings: " + ticTacToe.getUserScore()  + "-" + ticTacToe.getBotScore());
+            System.out.println("Current Standings: " + ticTacToe.getUserScore()  + "-" + ticTacToe.getBotScore()); //Reports current standings as user's score to bot's score
         }
 
         int userScore = ticTacToe.getUserScore();
         int botScore = ticTacToe.getBotScore();
         int difference = Math.abs(userScore - botScore);
         String plural = "";
-        System.out.println("Final Results: " + userScore + "-" + botScore);
-        if (userScore > botScore){
+        System.out.println("Final Results: " + userScore + "-" + botScore); //Reports final standings as user's score to bot's score
+        if (userScore > botScore){ //If the user has a greater score than the bot, the user is congratulated
             System.out.println("You win!");
-            if (difference > 1){
+            if (difference > 1){ // If the user beats the bot by more than one point, the system will print in plural
                 plural = "s";
             }
-            System.out.println("You beat the bot by " + difference +" point" + plural + "!");
+            System.out.println("You beat the bot by " + difference +" point" + plural + "!"); //Prints the difference of points
             System.out.println("Great job!");
         }else if(userScore < botScore){
-            System.out.println("The bot wins!");
-            if (difference > 1){
+            System.out.println("The bot wins!"); //If the bot has a greater score than the user, the system will print that the bot wins
+            if (difference > 1){ // If the bot beats the user by more than one point, the system will print in plural
                 plural = "s";
             }
-            System.out.println("The bot beats you by " + difference +" point" + plural + "!");
+            System.out.println("The bot beats you by " + difference +" point" + plural + "!"); //Prints the difference of points
             System.out.println("Better luck next time!");
         }else{
-            System.out.println("Tie!");
+            System.out.println("Tie!"); //If the user's score and the bot's score are the same, it results in a tie.
             System.out.println("What a fierce battle!");
         }
 
         System.out.println();
+        //End of the program. Thanks the user for participating.
         if (repeat == 1){
             System.out.println("Thank you for playing TicTacToe!");
         }else {
