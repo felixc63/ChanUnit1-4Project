@@ -58,9 +58,6 @@ public class TicTacToe {
         return userScore; // Returns the user's current score
     }
 
-    public String getTable(){
-        return table; // Returns the current table which includes what spots are occupied and what spots are open
-    }
     public String printTable(String one, String two, String three, String four, String five, String six, String seven, String eight, String nine){
         /* prints:
             |---|---|---|
@@ -101,11 +98,15 @@ public class TicTacToe {
         calcSpot(spot,symbol); //User's Move based on user's inputted spot number and their desired symbol
     }
 
+    public String toString(){
+        return table; // Returns the current table which includes what spots are occupied and what spots are open
+    }
+
     public void botPlay(){
         Integer randNum = 0;
         while (true) { //Repeats randomizer until the bot finds an empty spot
             randNum = (int) (Math.random() * 9 + 1);
-            if (getTable().contains(randNum.toString())){
+            if (table.contains(randNum.toString())){
                 break;
             }
         }

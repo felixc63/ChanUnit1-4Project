@@ -54,7 +54,7 @@ public class TicTacToeRunner {
                 while (true) { //Loop to ensure that the user inputs a valid number that's on the table
                     System.out.print("Input a number from the table for your move: ");
                     spot = scan.next();
-                    if (!(ticTacToe.getTable().contains(spot))) {
+                    if (!(ticTacToe.toString().contains(spot))) {
                         System.out.println("Please input a number that's on the table.");
                         System.out.println("Try again.");
                     } else {
