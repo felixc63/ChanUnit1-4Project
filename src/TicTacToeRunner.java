@@ -7,6 +7,8 @@ public class TicTacToeRunner {
 
         System.out.println("Welcome to TicTacToe!"); //Introduction
         System.out.println("You will be versing a bot.");
+        System.out.println("This is the table you will be working with:");
+        System.out.println(ticTacToe);
 
         String symbol = "o"; //Default symbol of "o"
         while (true) { //Loops until the user inputs an appropriate symbol
@@ -54,7 +56,7 @@ public class TicTacToeRunner {
                 while (true) { //Loop to ensure that the user inputs a valid number that's on the table
                     System.out.print("Input a number from the table for your move: ");
                     spot = scan.next();
-                    if (!(ticTacToe.toString().contains(spot))) {
+                    if (!(ticTacToe.getTable().contains(spot))) {
                         System.out.println("Please input a number that's on the table.");
                         System.out.println("Try again.");
                     } else {
